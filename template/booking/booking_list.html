@@ -1,0 +1,83 @@
+{% extends "navbar/home.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">My Bookings</h1>
+  <div class="row">
+    {% for booking, paypal in bookings_with_paypal %}
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <img src="{{ booking.stay.image.url }}" class="card-img-top" alt="{{ booking.stay.room }} image">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ booking.stay.room }}</h5>
+          <p class="card-text">Check-in: {{ booking.checkin }} - Check-out: {{ booking.checkout }}</p>
+          <p class="card-text">
+            {% if booking.discounted_price %}
+              Price: ${{ booking.discounted_price }}
+            {% else %}
+              Price: ${{ booking.bedtype.price }}
+            {% endif %}
+          </p>
+          <form action="{% url 'cancel_booking' id=id  year=year month=month %}" method="post">
+            {% csrf_token %}
+            <div class="mt-auto">
+              <button type="submit" class="btn btn-danger">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          {{ paypal.render }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  /* Additional styling for booking list */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card:hover {
+    transform: scale(1.02);
+  }
+
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-footer {
+    background-color: white;
+    border-top: none;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  .card-text{
+    color:black
+  }
+</style>
+{% endblock %}

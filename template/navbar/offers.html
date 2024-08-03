@@ -1,0 +1,66 @@
+{% extends "navbar/home.html" %}
+{% load static %}
+{% block title %}Offers - Hotel Management{% endblock %}
+
+{% block content %}
+<style>
+  .offerImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .offerContent {
+    width: 800px;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .offerContent img {
+    width: 800px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .offerContent .card-title {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+
+  .offerContent p {
+    color: black;
+    margin: 10px 0;
+  }
+
+  .offerContent .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .offerContent .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .offerContent .btn-primary .a {
+    text-decoration: none;
+    color: white;
+  }
+</style>
+
+<div class="offerImage">
+  <img src="{% static 'images/home1.png' %}" alt="Home Image">
+</div>
+
+<div class="offerContent">
+  <img src="https://photos.mandarinoriental.com/is/image/MandarinOriental/abu-dhabi-royal-suite-living-room-new?wid=1280&fmt=jpeg&op_usm=1,1,5,0&resMode=sharp2&fit=crop&qlt=75,0" alt="Offer Image">
+  <h5 class="card-title">Golden 3rd Night</h5>
+  <p>Enjoy 10 percent off when you book a three-night stay.</p>
+  <button class="btn btn-primary"><a class="a" href="{% url 'stay' %}">Book Now</a></button>
+</div>
+
+{% endblock %}

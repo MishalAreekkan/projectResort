@@ -1,0 +1,61 @@
+{% extends "navbar/home.html" %}
+{% block content %}
+{% load static %}
+<style>
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 800px;
+        overflow: hidden;
+        z-index: -1;
+    }
+      
+    .video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    h3{
+        font-family: 'Lobster', cursive; 
+    }
+</style>
+    <div class="video-background" id='home1'>
+        <video autoplay loop muted>
+            <source src="{% static 'videos/dine.mp4' %}" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
+<div style="position:absolute; margin-top: 250px;">
+    <h3 style="color: white;">
+        Authentic dining experiences from around the world.
+        <br> Discover our serving mouth-watering cuisine and drinks in
+        <br> immaculately designed surroundings.
+    </h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for d in dine %}
+        <div class="col-md-6">
+            <div class="card mb-4" style="height: 100%;">
+                {% if d.image %}
+                <img class="card-img-top" src="{{ d.image.url }}" alt="Card image cap" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ d.meal_type }}</h5>
+                    <h5 class="card-title">{{ d.name }}</h5>
+                    <p class="card-text">{{ d.description }}</p>
+                    <h5 class="card-title">Start Time: {{ d.start_time|time:"H:i" }}</h5>
+                    <h5 class="card-title">End Time: {{ d.end_time|time:"H:i" }}</h5>
+                    <a href="#" class="btn btn-primary">Book</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

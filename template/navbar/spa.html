@@ -1,0 +1,30 @@
+{% extends "navbar/home.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <h1>Book Your Spa</h1>
+        <h2>Details about booking a Spa at the hotel...</h2>
+        
+        <div class="row">
+            {% for data in data %}
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Booking Details</h5>
+                        <h1 class="card-text">Check-in Date: {{ data.customer.username  }}</h1>
+                        <h5 class="card-text">Check-in Date: {{ data.checkin }}</h5>
+                        <h5 class="card-text">Check-out Date: {{ data.checkout }}</h5>
+                        <h5 class="card-text">Adults: {{ data.adults }}</h5>
+                        <h5 class="card-text">Children: {{ data.children }}</h5>
+                        <h5 class="card-text">Stay ID: {{ data.stay_id }}</h5>
+                        <h5 class="card-text">Bedtype ID: {{ data.bedtype_id }}</h5>
+                        <h5 class="card-text">Customer ID: {{ data.customer_id }}</h5>
+                        <h5 class="card-text">Discounted Price: {{ data.discounted_price }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

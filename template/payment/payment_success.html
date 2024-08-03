@@ -1,0 +1,9 @@
+{% extends "navbar/home.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Payment Success</h1>
+    <p>Your payment was successful! A confirmation email has been sent to your email address.</p>
+    <a href="{% url 'booking_list' %}" class="btn btn-primary">Go to My Bookings</a>
+</div>
+{% endblock %}
